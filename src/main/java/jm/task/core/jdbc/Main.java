@@ -14,6 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         service.createUsersTable();
 
         service.saveUser("Vladimir", "Burkov", (byte) 22);
