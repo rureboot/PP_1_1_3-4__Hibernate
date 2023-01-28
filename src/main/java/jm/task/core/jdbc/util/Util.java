@@ -35,22 +35,23 @@ public class Util {
         if (sessionFactory != null) {
             return sessionFactory;
         }
-        else {
-            Configuration configuration = new Configuration();
-            configuration.addAnnotatedClass(User.class);
-            configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-            configuration.setProperty("hibernate.connection.url", DB_URL_HIBERNATE);
-            configuration.setProperty("hibernate.connection.username", DB_USER);
-            configuration.setProperty("hibernate.connection.password", DB_PASS);
 
-            configuration.setProperty("dialect", "org.hibernate.dialect.MySQL8Dialect");
-            configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+        Configuration configuration = new Configuration();
 
+        configuration.addAnnotatedClass(User.class);
 
-            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+        configuration.setProperty("hibernate.connection.url", DB_URL_HIBERNATE);
+        configuration.setProperty("hibernate.connection.username", DB_USER);
+        configuration.setProperty("hibernate.connection.password", DB_PASS);
 
-            sessionFactory = configuration.buildSessionFactory(builder.build());
-            return sessionFactory;
-        }
+        configuration.setProperty("dialect", "org.hibernate.dialect.MySQL8Dialect");
+        configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+        sessionFactory = configuration.buildSessionFactory(builder.build());
+
+        return sessionFactory;
+
     }
 }
